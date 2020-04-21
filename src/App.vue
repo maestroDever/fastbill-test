@@ -39,21 +39,7 @@
 
       <v-spacer></v-spacer>
 
-      <v-autocomplete
-        v-model="select"
-        :loading="loading"
-        :items="items"
-        :search-input.sync="search"
-        cache-items
-        class="mx-4"
-        flat
-        hide-no-data
-        hide-details
-        label="Search"
-        solo-inverted
-        rounded
-        prepend-inner-icon="mdi-magnify"
-      ></v-autocomplete>
+      <search-box />
     </v-app-bar>
 
     <v-content> </v-content>
@@ -61,34 +47,16 @@
 </template>
 
 <script>
+import SearchBox from "@/components/AppBarSearchBox.vue";
 export default {
   name: "App",
 
-  data: () => ({
-    loading: false,
-    items: [],
-    search: null,
-    select: null,
-    states: ["Alabama", "Alaska", "American Samoa"],
-    tab: null
-  }),
-
-  watch: {
-    search(val) {
-      val && val !== this.select && this.querySelections(val);
-    }
+  components: {
+    SearchBox
   },
-  methods: {
-    querySelections(v) {
-      this.loading = true;
-      // Simulated ajax query
-      setTimeout(() => {
-        this.items = this.states.filter(e => {
-          return (e || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
-        });
-        this.loading = false;
-      }, 500);
-    }
-  }
+
+  data: () => ({
+    tab: null
+  })
 };
 </script>
