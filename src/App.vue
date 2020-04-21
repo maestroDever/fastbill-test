@@ -17,25 +17,7 @@
 
       <v-spacer></v-spacer>
 
-      <v-tabs v-model="tab" centered dark icons-and-text>
-        <v-tabs-slider></v-tabs-slider>
-
-        <v-tab href="#all">
-          All
-        </v-tab>
-
-        <v-tab href="#offers">
-          Offers
-        </v-tab>
-
-        <v-tab href="#incomes">
-          Incomes
-        </v-tab>
-
-        <v-tab href="#outcomes">
-          Outcomes
-        </v-tab>
-      </v-tabs>
+      <tabs />
 
       <v-spacer></v-spacer>
 
@@ -48,15 +30,13 @@
 
 <script>
 import SearchBox from "@/components/AppBarSearchBox.vue";
+import Tabs from "@/components/AppBarTabs.vue";
 export default {
   name: "App",
 
   components: {
-    SearchBox
-  },
-
-  data: () => ({
-    tab: null
-  })
+    SearchBox,
+    Tabs
+  }
 };
 </script>
