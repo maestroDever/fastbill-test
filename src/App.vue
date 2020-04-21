@@ -17,6 +17,28 @@
 
       <v-spacer></v-spacer>
 
+      <v-tabs v-model="tab" centered dark icons-and-text>
+        <v-tabs-slider></v-tabs-slider>
+
+        <v-tab href="#all">
+          All
+        </v-tab>
+
+        <v-tab href="#offers">
+          Offers
+        </v-tab>
+
+        <v-tab href="#incomes">
+          Incomes
+        </v-tab>
+
+        <v-tab href="#outcomes">
+          Outcomes
+        </v-tab>
+      </v-tabs>
+
+      <v-spacer></v-spacer>
+
       <v-autocomplete
         v-model="select"
         :loading="loading"
@@ -47,7 +69,8 @@ export default {
     items: [],
     search: null,
     select: null,
-    states: ["Alabama", "Alaska", "American Samoa"]
+    states: ["Alabama", "Alaska", "American Samoa"],
+    tab: null
   }),
 
   watch: {
