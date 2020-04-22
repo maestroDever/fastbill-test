@@ -7,9 +7,9 @@
             alt="Logo"
             class="shrink mr-2"
             contain
-            src="https://via.placeholder.com/150"
+            src="https://www.fastbill.com/themes/custom/fastbill/img/FastBill-Logo-White.svg"
             transition="scale-transition"
-            width="40"
+            height="40"
             rounded
           />
         </router-link>
