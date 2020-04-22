@@ -24,19 +24,33 @@
       <search-box />
     </v-app-bar>
 
-    <v-content> </v-content>
+    <v-content class="px-12">
+      <div class="d-flex justify-space-around mt-12">
+        <card title="Offers" :items="offerItems" />
+      </div>
+    </v-content>
   </v-app>
 </template>
 
 <script>
 import SearchBox from "@/components/AppBarSearchBox.vue";
 import Tabs from "@/components/AppBarTabs.vue";
+import Card from "@/components/Card.vue";
 export default {
   name: "App",
 
   components: {
     SearchBox,
-    Tabs
-  }
+    Tabs,
+    Card
+  },
+
+  data: () => ({
+    offerItems: [
+      { id: 1, name: "Offer #1" },
+      { id: 2, name: "Offer #2" },
+      { id: 3, name: "Offer #3" }
+    ]
+  })
 };
 </script>
