@@ -49,19 +49,46 @@
           title="Offers"
           :items="offerItems"
           v-if="selectedTab == 'all' || selectedTab == 'offers'"
+          @showAll="showAll"
         />
         <card
           title="Incomes"
           :items="incomeItems"
           v-if="selectedTab == 'all' || selectedTab == 'incomes'"
+          @showAll="showAll"
         />
         <card
           title="Outcomes"
           :items="outcomeItems"
           v-if="selectedTab == 'all' || selectedTab == 'outcomes'"
+          @showAll="showAll"
         />
       </div>
     </v-content>
+
+    <v-overlay :value="overlay">
+      <v-progress-circular indeterminate size="64"></v-progress-circular>
+    </v-overlay>
+
+    <v-fade-transition>
+      <v-overlay v-if="showOverlay">
+        <card :title="selectedCardTitle" :items="itemsAll" :is-all="true" />
+        <v-fab-transition>
+          <v-btn
+            color="error"
+            fab
+            large
+            dark
+            bottom
+            left
+            class="overlay--close"
+            @click="showOverlay = false"
+          >
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </v-fab-transition>
+      </v-overlay>
+    </v-fade-transition>
   </v-app>
 </template>
 
@@ -82,11 +109,36 @@ export default {
   },
 
   data: () => ({
-    showSearchMobile: false
+    showSearchMobile: false,
+    itemsAll: [],
+    showOverlay: false,
+    selectedCardTitle: "",
+    overlay: false
   }),
 
   computed: {
-    ...mapGetters(["offerItems", "incomeItems", "outcomeItems", "selectedTab"])
+    ...mapGetters([
+      "offerItems",
+      "incomeItems",
+      "outcomeItems",
+      "selectedTab",
+      "offerItemsAll",
+      "incomeItemsAll",
+      "outcomeItemsAll"
+    ])
+  },
+
+  methods: {
+    showAll(title) {
+      this.selectedCardTitle = title.toLowerCase().slice(0, -1);
+      this.itemsAll = this[`${this.selectedCardTitle}ItemsAll`];
+      this.overlay = true;
+
+      setTimeout(() => {
+        this.overlay = false;
+        this.showOverlay = true;
+      }, 2000);
+    }
   }
 };
 </script>
@@ -95,5 +147,12 @@ export default {
 .mobile-search {
   position: absolute;
   width: 100%;
+}
+
+.overlay--close {
+  top: 0;
+  right: 0;
+  position: absolute;
+  transform: translate(50%, -50%);
 }
 </style>

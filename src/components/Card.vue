@@ -5,10 +5,12 @@
     dark
     max-width="400"
     raised
-    min-width="320"
+    :min-width="isAll ? 360 : 320"
   >
-    <v-card-title class="border-bottom" border="bottom">
-      <span class="title font-weight-bold">{{ title }}</span>
+    <v-card-title class="border-bottom text-capitalize" border="bottom">
+      <span class="title font-weight-bold">
+        {{ isAll ? `All ${title}s` : title }}
+      </span>
     </v-card-title>
 
     <v-divider dark></v-divider>
@@ -16,9 +18,7 @@
     <v-card-text class="headline font-weight-bold">
       <v-list-item v-for="item in items" :key="item.id">
         <v-list-item-content>
-          <v-list-item-title>
-            {{ item.name }}
-          </v-list-item-title>
+          <v-list-item-title>{{ item.name }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-card-text>
@@ -32,6 +32,7 @@
           color="success"
           :loading="showAllLoading"
           @click="showAll"
+          v-if="!isAll"
           >Show all</v-btn
         >
       </v-row>
@@ -56,9 +57,9 @@ export default {
       type: Function,
       default: null
     },
-    showAllFunction: {
-      type: Function,
-      default: null
+    isAll: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -71,6 +72,7 @@ export default {
       this.showAllLoading = true;
       setTimeout(() => {
         this.showAllLoading = false;
+        this.$emit("showAll", this.title);
       }, 1500);
     }
   }
