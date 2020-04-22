@@ -24,11 +24,23 @@
       <search-box />
     </v-app-bar>
 
-    <v-content class="px-md-12">
+    <v-content class="px-md-12 px-6">
       <div class="d-flex justify-space-around mt-12 flex-md-row flex-wrap">
-        <card title="Offers" :items="offerItems" />
-        <card title="Incomes" :items="incomeItems" />
-        <card title="Outcomes" :items="outcomeItems" />
+        <card
+          title="Offers"
+          :items="offerItems"
+          v-if="selectedTab == 'all' || selectedTab == 'offers'"
+        />
+        <card
+          title="Incomes"
+          :items="incomeItems"
+          v-if="selectedTab == 'all' || selectedTab == 'incomes'"
+        />
+        <card
+          title="Outcomes"
+          :items="outcomeItems"
+          v-if="selectedTab == 'all' || selectedTab == 'outcomes'"
+        />
       </div>
     </v-content>
   </v-app>
@@ -51,7 +63,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["offerItems", "incomeItems", "outcomeItems"])
+    ...mapGetters(["offerItems", "incomeItems", "outcomeItems", "selectedTab"])
   }
 };
 </script>

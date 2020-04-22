@@ -31,7 +31,8 @@ export default new Vuex.Store({
     outcomeItemsAll: [...Array(10).keys()].map(i => ({
       id: i + 1,
       name: "Outcome #" + (i + 1)
-    }))
+    })),
+    tab: "all"
   },
   getters: {
     offerItems: state => state.offerItems,
@@ -39,9 +40,12 @@ export default new Vuex.Store({
     outcomeItems: state => state.outcomeItems,
     offerItemsAll: state => state.offerItemsAll,
     incomeItemsAll: state => state.incomeItemsAll,
-    outcomeItemsAll: state => state.outcomeItemsAll
+    outcomeItemsAll: state => state.outcomeItemsAll,
+    selectedTab: state => state.tab
   },
-  mutations: {},
+  mutations: {
+    updateTab: (state, val) => (state.tab = val)
+  },
   actions: {},
   modules: {}
 });
