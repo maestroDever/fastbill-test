@@ -1,7 +1,7 @@
 <template>
   <v-card
     class="mx-auto px-5 py-2"
-    color="primary"
+    color="info"
     dark
     max-width="400"
     raised
@@ -25,8 +25,13 @@
 
     <v-card-actions>
       <v-row align="center" justify="space-around">
-        <v-btn dark color="primary" tile>Add {{ title }}</v-btn>
-        <v-btn dark tile color="teal" :loading="showAllLoading" @click="showAll"
+        <v-btn dark color="accent" tile>Add {{ title }}</v-btn>
+        <v-btn
+          dark
+          tile
+          color="success"
+          :loading="showAllLoading"
+          @click="showAll"
           >Show all</v-btn
         >
       </v-row>
