@@ -24,8 +24,8 @@
       <search-box />
     </v-app-bar>
 
-    <v-content class="px-12">
-      <div class="d-flex justify-space-around mt-12">
+    <v-content class="px-md-12">
+      <div class="d-flex justify-space-around mt-12 flex-md-row flex-wrap">
         <card title="Offers" :items="offerItems" />
         <card title="Incomes" :items="incomeItems" />
         <card title="Outcomes" :items="outcomeItems" />
