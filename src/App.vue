@@ -21,10 +21,29 @@
 
       <v-spacer></v-spacer>
 
-      <search-box />
+      <div class="d-md-block d-sm-none">
+        <search-box />
+      </div>
+
+      <v-btn
+        icon
+        class="d-md-none"
+        @click="showSearchMobile = !showSearchMobile"
+      >
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
     </v-app-bar>
 
     <v-content class="px-md-12 px-6">
+      <div
+        class="mobile-search d-flex justify-end my-2"
+        v-if="showSearchMobile"
+        transition="fab-transition"
+      >
+        <div class="col-4 pa-0">
+          <search-box />
+        </div>
+      </div>
       <div class="d-flex justify-space-around mt-12 flex-md-row flex-wrap">
         <card
           title="Offers"
@@ -62,8 +81,19 @@ export default {
     Card
   },
 
+  data: () => ({
+    showSearchMobile: false
+  }),
+
   computed: {
     ...mapGetters(["offerItems", "incomeItems", "outcomeItems", "selectedTab"])
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.mobile-search {
+  position: absolute;
+  width: 100%;
+}
+</style>
