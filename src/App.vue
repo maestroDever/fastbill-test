@@ -27,6 +27,8 @@
     <v-content class="px-12">
       <div class="d-flex justify-space-around mt-12">
         <card title="Offers" :items="offerItems" />
+        <card title="Incomes" :items="incomeItems" />
+        <card title="Outcomes" :items="outcomeItems" />
       </div>
     </v-content>
   </v-app>
@@ -36,6 +38,9 @@
 import SearchBox from "@/components/AppBarSearchBox.vue";
 import Tabs from "@/components/AppBarTabs.vue";
 import Card from "@/components/Card.vue";
+
+import { mapGetters } from "vuex";
+
 export default {
   name: "App",
 
@@ -45,12 +50,8 @@ export default {
     Card
   },
 
-  data: () => ({
-    offerItems: [
-      { id: 1, name: "Offer #1" },
-      { id: 2, name: "Offer #2" },
-      { id: 3, name: "Offer #3" }
-    ]
-  })
+  computed: {
+    ...mapGetters(["offerItems", "incomeItems", "outcomeItems"])
+  }
 };
 </script>
